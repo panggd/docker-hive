@@ -5,8 +5,8 @@ This is a learner project to understand how to ingest a semi-structured data and
 
 1. Run the init-hive script to deploy a docker container of Hadoop cluster server and Hive
 2. Build the Java based Hive application to a Jar file
-3. Docker cp the Hive Jar file and CSV dataset to Hadoop + Hive container
-4. Run Hive Jar to process CSV dataset
+3. Docker cp the Jar file and CSV dataset to Hive container
+4. Run Jar to process CSV dataset
 5. Read results
 
 ## Tech stack
@@ -23,7 +23,7 @@ This folder consists of a CSV dataset that describes the total attendance group 
 This folder consists of a Hive application that will process the CSV dataset to return the total attendance group by medical institutions.
 
 ## init-hive shell script
-This is a script that will git clone the Hive docker GitHub project, deploy a docker container of a Hadoop cluster server and Hive.
+This is a script that will git clone the Hive docker GitHub project, deploy a docker container of Hive.
 
 ## Prerequsites
 
@@ -36,8 +36,8 @@ https://docs.docker.com/install
 ### Start your docker daemon
 This is really depend on your OS. For my case, it is just starting the Docker app.
 
-### Deploy Hadoop cluster server and Hive
-This will deploy the docker container holding a Hadoop cluster server and Hive.
+### Deploy Hive container
+This will deploy the docker container holding  Hive.
 ```bash
 ./init-hive.sh
 ```
@@ -57,12 +57,9 @@ docker cp hive.jar <hive_server_container_id>:/opt/hive.jar
 
 ### Process the dataset and enjoy the output results
 ```bash
-# Get into the Hadoop cluster server
+# Get into the Hive container
 docker exec -it <hive_server_container_id> bash
 
-# This is a series of command to remove the input, output folders
-# Create a new input folder in HDFS
-# Copy the dataset to the HDFS input folder
 # Process the dataset
 java -cp hive.jar HiveApplication /opt/hospital-and-outpatient-attendances.csv
 ```
